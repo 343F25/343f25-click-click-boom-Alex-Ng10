@@ -21,9 +21,12 @@
     .odd td {
       background-color: #333333;
     }
+    
   </style>
 </head>
-
+<h1>
+  
+</h1>
 <body>
   <table>
     <tbody>
@@ -181,10 +184,11 @@
       lastSound.pause()
       lastSound.currentTime = 0;
       clickCount++
+      const h1 = document.querySelector('h1');
       if (clickCount % 3 == 0) {
-        // boom
         boomSound.play();
         lastSound = boomSound
+        h1.textContent = h1.textContent === "BOOM" ? "" : "BOOM";
       } else {
         clickSound.play();
         lastSound = clickSound
@@ -196,6 +200,14 @@
       const td = tdArg || (ev.target.closest && ev.target.closest('td'));
       if (td) td.remove();
 
+      document.querySelectorAll('tr').forEach(tr => {
+        const tdCount = tr.querySelectorAll('td').length;
+        if (tdCount % 2 === 1 && tdCount > 0) {
+          tr.classList.add('odd');
+        } else {
+          tr.classList.remove('odd');
+        }
+      });
     }
   </script>
 </body>
