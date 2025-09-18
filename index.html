@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,15 @@
 
     td {
       background-color: wheat;
-      border: 0.25rem solid #8EE4D7 ;
+      border: 0.25rem solid #8EE4D7;
+    }
+
+    .odd td {
+      background-color: #333333;
     }
   </style>
 </head>
+
 <body>
   <table>
     <tbody>
@@ -155,16 +161,22 @@
     let lastSound = clickSound;
 
     // TODO: 1 - make it such that if any table cell is clicked, the onClick function below is executed
-   
+
     const table = document.querySelector('table');
     if (table) {
-        table.addEventListener('click', function (ev) {
-          const td = ev.target.closest('td');
-          if (!td) return;
-          onClick(ev, td);
+      table.addEventListener('click', function (ev) {
+        const td = ev.target.closest('td');
+        if (!td) return;
+        onClick(ev, td);
       });
     }
-
+    // Update Click Click BOOM so that
+    // 1. even and odd
+    //     1. the class "odd" is added to rows that have an odd number of cells
+    //     2. the class doesn't remain on the rows when they have an even number of cells
+    // 2. BOOM TEXT
+    //     1. add an h1 at the top that has no content
+    //     2. each time the BOOM happens, change the content of the h1 to either "BOOM" or empty string (alternating)
     function onClick(ev, tdArg) {
       lastSound.pause()
       lastSound.currentTime = 0;
@@ -178,7 +190,7 @@
         lastSound = clickSound
       }
 
-      console.log(`ev in onClick ${ev}`)
+      console.log('ev in onClick', ev)
       // TODO: 2 - REMOVE THE TABLE CELL THAT WAS CLICKED
       // Remove the table cell that was clicked
       const td = tdArg || (ev.target.closest && ev.target.closest('td'));
@@ -187,4 +199,5 @@
     }
   </script>
 </body>
+
 </html>
