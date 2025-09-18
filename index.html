@@ -198,16 +198,8 @@
       // TODO: 2 - REMOVE THE TABLE CELL THAT WAS CLICKED
       // Remove the table cell that was clicked
       const td = tdArg || (ev.target.closest && ev.target.closest('td'));
-      if (td) td.remove();
-
-      document.querySelectorAll('tr').forEach(tr => {
-        const tdCount = tr.querySelectorAll('td').length;
-        if (tdCount % 2 === 1 && tdCount > 0) {
-          tr.classList.add('odd');
-        } else {
-          tr.classList.remove('odd');
-        }
-      });
+      ev.target.parentElement.classList.toggle('odd');
+      ev.target.remove();
     }
   </script>
 </body>
